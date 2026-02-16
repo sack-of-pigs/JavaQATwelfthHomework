@@ -78,6 +78,38 @@ class TestRadio {
         assertEquals(0, radio.getVolume());
     }
 
+    @Test
+    void testNextNormalCase() {
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(3);
+        radio.next();
+        assertEquals(4, radio.getCurrentStation());
+    }
+
+    @Test
+    void testNextAtMaxShouldResetToZero() {
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(9);
+        radio.next();
+        assertEquals(0, radio.getCurrentStation());
+    }
+
+    @Test
+    void testPrevNormalCase() {
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(3);
+        radio.prev();
+        assertEquals(2, radio.getCurrentStation());
+    }
+
+    @Test
+    void testPrevAtZeroShouldGoToNine() {
+        Radio radio = new Radio(10);
+        radio.setCurrentStation(0);
+        radio.prev();
+        assertEquals(9, radio.getCurrentStation());
+    }
+
     // Тесты для методов увеличения и уменьшения громкости
 
     @Test
